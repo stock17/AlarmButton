@@ -15,11 +15,13 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class MainActivity extends AppCompatActivity {
 
+    Caller caller;
 
     @BindView(R.id.alarm_button) ImageButton alarmButton;
     @OnClick (R.id.alarm_button)
     public void onClickAlarmButton (ImageButton ib) {
-        Toast.makeText(this, "Alarm! Help! Sos!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Alarm! Help! Sos!", Toast.LENGTH_SHORT).show();
+        caller.PhoneAlarm();
     }
 
     @Override
@@ -27,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-
-
+        caller = new Caller(this);
 
     }
 }
