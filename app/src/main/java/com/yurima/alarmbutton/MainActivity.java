@@ -10,14 +10,14 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    Caller caller;
+    Manager manager;
 
     @BindView(R.id.alarm_button) ImageButton alarmButton;
     @OnClick (R.id.alarm_button)
     public void onClickAlarmButton (ImageButton ib) {
         //Toast.makeText(this, "Alarm! Help! Sos!", Toast.LENGTH_SHORT).show();
         //caller.phoneAlarm();
-        caller.smsAlarm();
+        manager.onClickAlarmButton();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        caller = new Caller(this);
+        manager = new Manager(this);
 
     }
 }
