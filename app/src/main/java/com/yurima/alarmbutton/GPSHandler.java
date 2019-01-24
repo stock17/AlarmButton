@@ -18,7 +18,6 @@ public class GPSHandler implements LocationListener {
     private Location location;
 
 
-
     public GPSHandler(Context context){
         this.context = context;
     }
@@ -42,16 +41,6 @@ public class GPSHandler implements LocationListener {
         }
 
         return location;
-    }
-
-    public String getTextLocation () {
-        location = getLocation();
-        if (location == null)
-            return null;
-        StringBuilder builder = new StringBuilder()
-                .append("Longitude: ").append(location.getLongitude())
-                .append("\nLatitude: ").append(location.getLatitude());
-        return builder.toString();
     }
 
     @Override
