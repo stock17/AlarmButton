@@ -31,17 +31,7 @@ public class Caller {
     }
 
     public void smsAlarm () {
-        try {
-            String msg = "Alarm!Alarm!";
-            SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNo, null, msg, null, null);
-            Toast.makeText(context.getApplicationContext(), "Message Sent",
-                    Toast.LENGTH_LONG).show();
-        } catch (Exception ex) {
-            Toast.makeText(context.getApplicationContext(),ex.getMessage(),
-                    Toast.LENGTH_LONG).show();
-            ex.printStackTrace();
-        }
+
     }
 
 
