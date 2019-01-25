@@ -32,7 +32,17 @@ public class Manager {
         sms = new SmsAppSender(context, phoneNo);
     }
 
+    public AlarmMessage createAlarmMessage(){
+        AlarmMessage msg = new AlarmMessageImpl();
+        Location location = gps.getLocation();
+        if (location != null)
+            msg.setLocation(location);
+        return msg;
+    }
+
     public void onClickAlarmButton() {
+        AlarmMessage msg = createAlarmMessage();
+
         //caller.phoneAlarm();
 
 //        AlarmMessageImpl msg = new AlarmMessageImpl();
@@ -41,11 +51,9 @@ public class Manager {
 //        sms.Send(msg);
 
         //testing part
-        AlarmMessage msg = new AlarmMessageImpl();
-        Location l = gps.getLocation();
-        msg.setLocation(l);
 
         String jString = msg.toJson().toString();
+
 
         try {
             JSONObject json = new JSONObject(jString);

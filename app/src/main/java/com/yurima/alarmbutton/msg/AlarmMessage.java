@@ -10,6 +10,5 @@ import org.json.JSONObject;
 public interface AlarmMessage {
 
     JSONObject toJson();
-
     void setLocation(Location location);
 }

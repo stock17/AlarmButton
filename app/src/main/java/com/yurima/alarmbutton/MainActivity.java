@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.alarm_button) ImageButton alarmButton;
     @OnClick (R.id.alarm_button)
     public void onClickAlarmButton (ImageButton ib) {
-        //Toast.makeText(this, "Alarm! Help! Sos!", Toast.LENGTH_SHORT).show();
-        //caller.phoneAlarm();
         manager.onClickAlarmButton();
     }
 
