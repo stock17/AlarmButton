@@ -19,7 +19,7 @@ public class SmsManagerSender extends SmsSender {
     @Override
     public void Send(AlarmMessage msg) {
         try {
-            String text = msg.getText();
+            String text = msg.toString();
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, text, null, null);
             Toast.makeText(context.getApplicationContext(), "Message Sent",
