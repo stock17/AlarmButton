@@ -2,11 +2,10 @@ package com.yurima.alarmbutton;
 
 import android.content.Context;
 import android.location.Location;
-import android.location.LocationListener;
 import android.widget.Toast;
 
+import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 import com.yurima.alarmbutton.sms.SmsAppSender;
-import com.yurima.alarmbutton.sms.SmsManagerSender;
 import com.yurima.alarmbutton.sms.SmsSender;
 
 /**
@@ -32,16 +31,20 @@ public class Manager {
     public void onClickAlarmButton() {
         //caller.phoneAlarm();
 
-        AlarmMessage msg = new AlarmMessage();
+//        AlarmMessageImpl msg = new AlarmMessageImpl();
+//        Location l = gps.getLocation();
+//        msg.setLocation(l);
+//        sms.Send(msg);
+
+        //testing part
+        AlarmMessageImpl msg = new AlarmMessageImpl();
         Location l = gps.getLocation();
         msg.setLocation(l);
-        sms.Send(msg);
+        String jString = msg.toJsonString();
 
-        /*String gpsText = gps.getTextLocation();
-        if (gpsText == null)
-            Toast.makeText(context, "GPS Error", Toast.LENGTH_SHORT).show();
-
-        Toast.makeText(context, gps.getTextLocation(), Toast.LENGTH_SHORT).show();*/
+        AlarmMessageImpl a2 = new AlarmMessageImpl();
+        a2.fromJsonString(jString);
+        Toast.makeText(context, a2.toString(), Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.widget.Toast;
 
-import com.yurima.alarmbutton.AlarmMessage;
+import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 
 /**
  * Created by Yury on 24.01.2019.
@@ -17,9 +17,9 @@ public class SmsManagerSender extends SmsSender {
     }
 
     @Override
-    public void Send(AlarmMessage msg) {
+    public void Send(AlarmMessageImpl msg) {
         try {
-            String text = msg.toString();
+            String text = msg.toJson().toString();
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, text, null, null);
             Toast.makeText(context.getApplicationContext(), "Message Sent",
