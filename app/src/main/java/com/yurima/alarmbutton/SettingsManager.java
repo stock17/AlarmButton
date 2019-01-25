@@ -10,14 +10,14 @@ import com.yurima.alarmbutton.msg.AlarmMessage;
 
 public class SettingsManager {
 
-    Context context;
+    MainActivity activity;
 
-    public SettingsManager(Context context) {
-        this.context = context;
+    public SettingsManager(MainActivity activity) {
+        this.activity = activity;
     }
 
     public void onClickSettings(){
-
+        activity.showSettings();
     }
 
 

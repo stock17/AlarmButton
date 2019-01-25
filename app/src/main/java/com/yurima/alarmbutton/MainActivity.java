@@ -1,5 +1,6 @@
 package com.yurima.alarmbutton;
 
+import android.app.Dialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         manager = new Manager(this);
         settingsManager = new SettingsManager(this);
-
     }
 
     @Override
@@ -44,7 +44,14 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         if(id==R.id.action_settings) {
             settingsManager.onClickSettings();
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showSettings(){
+        Dialog settingsDialog = new Dialog(this);
+        settingsDialog.show();
     }
 }
