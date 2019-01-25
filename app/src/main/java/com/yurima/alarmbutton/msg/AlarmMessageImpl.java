@@ -30,6 +30,16 @@ public class AlarmMessageImpl implements AlarmMessage {
         this.date = Calendar.getInstance().getTime();
     }
 
+    public AlarmMessageImpl(JSONObject json) throws JSONException{
+            this.id = json.getInt("id");
+            double longitude = json.getDouble("long");
+            double latitude = json.getDouble("lat");
+            this.location = new Location(LocationManager.GPS_PROVIDER);
+            this.location.setLongitude(longitude);
+            this.location.setLatitude(latitude);
+            this.date = new Date(json.getLong("time"));
+    }
+
     public void setLocation(Location location) {
         this.location = location;
     }
@@ -58,38 +68,4 @@ public class AlarmMessageImpl implements AlarmMessage {
         }
         return json;
     }
-
-    @Override
-    public String toJsonString() {
-        return toJson().toString();
-    }
-
-    @Override
-    public boolean fromJson(JSONObject json) {
-        try {
-            this.id = json.getInt("id");
-            double longitude = json.getDouble("long");
-            double latitude = json.getDouble("lat");
-            this.location = new Location(LocationManager.GPS_PROVIDER);
-            this.location.setLongitude(longitude);
-            this.location.setLatitude(latitude);
-            this.date = new Date(json.getLong("time"));
-        } catch(JSONException e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public boolean fromJsonString(String jsonString) {
-        try {
-            JSONObject json = new JSONObject(jsonString);
-            return fromJson(json);
-        } catch (JSONException e){
-            return false;
-        }
-    }
-
-
 }

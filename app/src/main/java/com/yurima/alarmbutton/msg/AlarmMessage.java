@@ -1,4 +1,6 @@
 package com.yurima.alarmbutton.msg;
+import android.location.Location;
+
 import org.json.JSONObject;
 
 /**
@@ -8,7 +10,6 @@ import org.json.JSONObject;
 public interface AlarmMessage {
 
     JSONObject toJson();
-    String toJsonString();
-    boolean fromJson(JSONObject json);
-    boolean fromJsonString(String jsonString);
+
+    void setLocation(Location location);
 }

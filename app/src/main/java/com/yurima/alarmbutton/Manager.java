@@ -4,9 +4,13 @@ import android.content.Context;
 import android.location.Location;
 import android.widget.Toast;
 
+import com.yurima.alarmbutton.msg.AlarmMessage;
 import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 import com.yurima.alarmbutton.sms.SmsAppSender;
 import com.yurima.alarmbutton.sms.SmsSender;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Yury on 23.01.2019.
@@ -37,14 +41,19 @@ public class Manager {
 //        sms.Send(msg);
 
         //testing part
-        AlarmMessageImpl msg = new AlarmMessageImpl();
+        AlarmMessage msg = new AlarmMessageImpl();
         Location l = gps.getLocation();
         msg.setLocation(l);
-        String jString = msg.toJsonString();
 
-        AlarmMessageImpl a2 = new AlarmMessageImpl();
-        a2.fromJsonString(jString);
-        Toast.makeText(context, a2.toString(), Toast.LENGTH_SHORT).show();
+        String jString = msg.toJson().toString();
+
+        try {
+            JSONObject json = new JSONObject(jString);
+            AlarmMessage a2 = new AlarmMessageImpl(json);
+            Toast.makeText(context, a2.toString(), Toast.LENGTH_SHORT).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 }
