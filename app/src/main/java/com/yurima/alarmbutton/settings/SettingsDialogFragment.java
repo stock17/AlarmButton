@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.webkit.WebViewDatabase.getInstance;
 import static butterknife.ButterKnife.bind;
 
 /**
@@ -60,15 +62,13 @@ public class SettingsDialogFragment extends DialogFragment {
     }
 
     private void readSettings() {
-        SharedPreferences settings = getActivity().getSharedPreferences(SettingsManager.SETTINGS, Context.MODE_PRIVATE);
-        phoneText.setText(settings.getString(SettingsManager.PHONE_NO, "000"));
+        SettingsData data = new SettingsData(getActivity());
+        phoneText.setText(data.getPhone());
     }
 
     private void saveSettings() {
-        SharedPreferences settings = getActivity().getSharedPreferences(SettingsManager.SETTINGS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(SettingsManager.PHONE_NO, phoneText.getText().toString());
-        editor.commit();
+        SettingsData data = new SettingsData(getActivity());
+        data.savePhone(phoneText.getText().toString());
     }
 
     @Override

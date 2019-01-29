@@ -11,9 +11,6 @@ import com.yurima.alarmbutton.msg.AlarmMessage;
 
 public class SettingsManager {
 
-    public static final String SETTINGS = "settings";
-    public static final String PHONE_NO = "phone_no";
-
     MainActivity activity;
 
     public SettingsManager(MainActivity activity) {

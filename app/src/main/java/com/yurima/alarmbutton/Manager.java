@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.yurima.alarmbutton.msg.AlarmMessage;
 import com.yurima.alarmbutton.msg.AlarmMessageImpl;
+import com.yurima.alarmbutton.settings.SettingsData;
 import com.yurima.alarmbutton.sms.SmsAppSender;
 import com.yurima.alarmbutton.sms.SmsSender;
 
@@ -18,7 +19,7 @@ import org.json.JSONObject;
 
 public class Manager {
 
-    final private String phoneNo = "+79279826090";
+    private String phoneNo = "+79279826090";
 
     private Context context;
     private Caller caller;
@@ -41,6 +42,7 @@ public class Manager {
     }
 
     public void onClickAlarmButton() {
+        phoneNo = new SettingsData(context).getPhone();
         AlarmMessage msg = createAlarmMessage();
 
         //caller.phoneAlarm();
@@ -58,7 +60,9 @@ public class Manager {
         try {
             JSONObject json = new JSONObject(jString);
             AlarmMessage a2 = new AlarmMessageImpl(json);
-            Toast.makeText(context, a2.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context,
+                    "SMS to:" + phoneNo + "\n" +
+                    a2.toString(), Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
