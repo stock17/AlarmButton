@@ -6,13 +6,11 @@
     android:background="@color/colorBackground">
 
     <EditText
-
         android:id="@+id/dialog_menu_phone_no"
         android:inputType="phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="+92700001122"
         android:textColor="@android:color/white"
         android:textSize="32sp"
         tools:editable="true" />
