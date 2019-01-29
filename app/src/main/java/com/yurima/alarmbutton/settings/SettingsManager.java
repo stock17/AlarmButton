@@ -1,7 +1,8 @@
-package com.yurima.alarmbutton;
+package com.yurima.alarmbutton.settings;
 
 import android.content.Context;
 
+import com.yurima.alarmbutton.MainActivity;
 import com.yurima.alarmbutton.msg.AlarmMessage;
 
 /**
