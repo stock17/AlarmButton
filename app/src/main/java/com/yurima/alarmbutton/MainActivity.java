@@ -1,11 +1,14 @@
 package com.yurima.alarmbutton;
 
 import android.app.Dialog;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+
+import com.yurima.alarmbutton.settings.SettingsDialogFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showSettings(){
-        Dialog settingsDialog = new Dialog(this);
-        settingsDialog.show();
+        SettingsDialogFragment dialogFragment = new SettingsDialogFragment();
+        dialogFragment.show(getSupportFragmentManager(), "tag1");
+
     }
 }
