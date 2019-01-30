@@ -30,9 +30,5 @@ public class Caller {
         context.startActivity(phoneIntent);
     }
 
-    public void smsAlarm () {
-
-    }
-
 
 }
