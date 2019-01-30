@@ -32,12 +32,14 @@ public class AlarmMessageImpl implements AlarmMessage {
 
     public AlarmMessageImpl(JSONObject json) throws JSONException{
             this.id = json.getInt("id");
-            double longitude = json.getDouble("long");
-            double latitude = json.getDouble("lat");
-            this.location = new Location(LocationManager.GPS_PROVIDER);
-            this.location.setLongitude(longitude);
-            this.location.setLatitude(latitude);
             this.date = new Date(json.getLong("time"));
+            if (json.has("long") && json.has("lat")){
+                double longitude = json.getDouble("long");
+                double latitude = json.getDouble("lat");
+                this.location = new Location(LocationManager.GPS_PROVIDER);
+                this.location.setLongitude(longitude);
+                this.location.setLatitude(latitude);
+            }
     }
 
     public void setLocation(Location location) {
@@ -60,8 +62,10 @@ public class AlarmMessageImpl implements AlarmMessage {
         JSONObject json = new JSONObject();
         try {
             json.put("id",id);
-            json.put("long",location.getLongitude());
-            json.put("lat",location.getLatitude());
+            if (location != null) {
+                json.put("long",location.getLongitude());
+                json.put("lat",location.getLatitude());
+            }
             json.put("time", date.getTime());
         }catch (JSONException e){
             return null;
