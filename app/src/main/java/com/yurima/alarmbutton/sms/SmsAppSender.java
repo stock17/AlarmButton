@@ -12,12 +12,12 @@ import com.yurima.alarmbutton.msg.AlarmMessageImpl;
  */
 
 public class SmsAppSender extends SmsSender {
-    public SmsAppSender(Context context, String phoneNo) {
-        super(context, phoneNo);
+    public SmsAppSender(Context context) {
+        super(context);
     }
 
     @Override
-    public void Send(AlarmMessage msg) {
+    public void Send(String phoneNo, AlarmMessage msg) {
         Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "sms:" + phoneNo));
         intent.putExtra( "sms_body", msg.toJson().toString());
         context.startActivity(intent);

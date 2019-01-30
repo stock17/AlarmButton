@@ -12,7 +12,6 @@ import android.widget.Toast;
 public class Caller {
 
     private Context context;
-    final private String phoneNo = "+79279826090";
 
     public Caller (Context context) {
         this.context = context;
@@ -20,6 +19,7 @@ public class Caller {
 
     public void phoneAlarm(){
         Intent phoneIntent = new Intent(Intent.ACTION_CALL);
+        String phoneNo = "+79279826090";
         phoneIntent.setData(Uri.parse("tel:" + phoneNo));
 
         if (ActivityCompat.checkSelfPermission(context,

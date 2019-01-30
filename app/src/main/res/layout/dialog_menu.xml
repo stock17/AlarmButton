@@ -46,15 +46,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/dialog_menu_ok_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:text="@string/ok"
-            />
+        android:orientation="horizontal"
+        style="?android:attr/buttonBarButtonStyle"
+        >
 
         <Button
             android:id="@+id/dialog_menu_cancel_button"
@@ -63,6 +57,15 @@
             android:layout_weight="1"
             android:textSize="18sp"
             android:text="@string/cancel"
+            />
+
+        <Button
+            android:id="@+id/dialog_menu_ok_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18sp"
+            android:text="@string/ok"
             />
 
     </LinearLayout>

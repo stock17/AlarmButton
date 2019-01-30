@@ -12,12 +12,11 @@ import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 public abstract class SmsSender {
 
     protected Context context;
-    protected String phoneNo;
 
-    public SmsSender (Context context, String phoneNo){
+
+    public SmsSender (Context context){
         this.context = context;
-        this.phoneNo = phoneNo;
     }
 
-    public abstract void Send(AlarmMessage msg);
+    public abstract void Send(String phoneNo, AlarmMessage msg);
 }

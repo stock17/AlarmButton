@@ -13,12 +13,12 @@ import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 
 public class SmsManagerSender extends SmsSender {
 
-    public SmsManagerSender(Context context, String phoneNo){
-        super(context, phoneNo);
+    public SmsManagerSender(Context context){
+        super(context);
     }
 
     @Override
-    public void Send(AlarmMessage msg) {
+    public void Send(String phoneNo, AlarmMessage msg) {
         try {
             String text = msg.toJson().toString();
             SmsManager smsManager = SmsManager.getDefault();
