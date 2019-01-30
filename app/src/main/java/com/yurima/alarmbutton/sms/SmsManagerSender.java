@@ -4,6 +4,7 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.widget.Toast;
 
+import com.yurima.alarmbutton.msg.AlarmMessage;
 import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 
 /**
@@ -17,7 +18,7 @@ public class SmsManagerSender extends SmsSender {
     }
 
     @Override
-    public void Send(AlarmMessageImpl msg) {
+    public void Send(AlarmMessage msg) {
         try {
             String text = msg.toJson().toString();
             SmsManager smsManager = SmsManager.getDefault();

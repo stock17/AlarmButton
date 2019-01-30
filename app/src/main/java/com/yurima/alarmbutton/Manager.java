@@ -8,6 +8,7 @@ import com.yurima.alarmbutton.msg.AlarmMessage;
 import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 import com.yurima.alarmbutton.settings.SettingsData;
 import com.yurima.alarmbutton.sms.SmsAppSender;
+import com.yurima.alarmbutton.sms.SmsManagerSender;
 import com.yurima.alarmbutton.sms.SmsSender;
 
 import org.json.JSONException;
@@ -30,7 +31,7 @@ public class Manager {
         this.context = context;
         caller = new Caller(context);
         gps = new GPSHandler(context);
-        sms = new SmsAppSender(context, phoneNo);
+        sms = new SmsManagerSender(context, phoneNo);
     }
 
     public AlarmMessage createAlarmMessage(){
@@ -44,19 +45,10 @@ public class Manager {
     public void onClickAlarmButton() {
         phoneNo = new SettingsData(context).getPhone();
         AlarmMessage msg = createAlarmMessage();
-
-        //caller.phoneAlarm();
-
-//        AlarmMessageImpl msg = new AlarmMessageImpl();
-//        Location l = gps.getLocation();
-//        msg.setLocation(l);
-//        sms.Send(msg);
-
-        //testing part
-
         String jString = msg.toJson().toString();
+        sms.Send(msg);
 
-
+        //Simulate sending message
         try {
             JSONObject json = new JSONObject(jString);
             AlarmMessage a2 = new AlarmMessageImpl(json);

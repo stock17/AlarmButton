@@ -3,6 +3,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.yurima.alarmbutton.msg.AlarmMessage;
 import com.yurima.alarmbutton.msg.AlarmMessageImpl;
 
 
@@ -16,7 +17,7 @@ public class SmsAppSender extends SmsSender {
     }
 
     @Override
-    public void Send(AlarmMessageImpl msg) {
+    public void Send(AlarmMessage msg) {
         Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "sms:" + phoneNo));
         intent.putExtra( "sms_body", msg.toJson().toString());
         context.startActivity(intent);
