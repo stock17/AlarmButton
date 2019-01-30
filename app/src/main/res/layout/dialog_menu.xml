@@ -5,6 +5,34 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/key"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/dialog_menu_key"
+        android:inputType="phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        tools:editable="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/server_phone_number"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:gravity="center"
+        />
+
     <EditText
         android:id="@+id/dialog_menu_phone_no"
         android:inputType="phone"
@@ -25,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:text="OK"
+            android:text="@string/ok"
             />
 
         <Button
@@ -34,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textSize="18sp"
-            android:text="CANCEL"
+            android:text="@string/cancel"
             />
 
     </LinearLayout>

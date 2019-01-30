@@ -24,7 +24,7 @@ public class SmsManagerSender extends SmsSender {
             SmsManager smsManager = SmsManager.getDefault();
             smsManager.sendTextMessage(phoneNo, null, text, null, null);
             Toast.makeText(context.getApplicationContext(), "Message Sent",
-                    Toast.LENGTH_LONG).show();
+                    Toast.LENGTH_SHORT).show();
         } catch (Exception ex) {
             Toast.makeText(context.getApplicationContext(),ex.getMessage(),
                     Toast.LENGTH_LONG).show();

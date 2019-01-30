@@ -14,6 +14,7 @@ public class SettingsData {
 
     public static final String SETTINGS = "settings";
     public static final String PHONE_NO = "phone_no";
+    public static final String KEY = "key";
 
 
 
@@ -36,9 +37,13 @@ public class SettingsData {
         return (settings.getString(PHONE_NO, "000"));
     }
 
+    public void saveKey(String key) {
+        editor.putString(KEY, key);
+        editor.commit();
+    }
 
-
-
-
+    public String getKey(){
+        return (settings.getString(KEY, "0"));
+    }
 
 }

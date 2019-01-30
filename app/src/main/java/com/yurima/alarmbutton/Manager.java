@@ -2,6 +2,7 @@ package com.yurima.alarmbutton;
 
 import android.content.Context;
 import android.location.Location;
+import android.media.audiofx.BassBoost;
 import android.widget.Toast;
 
 import com.yurima.alarmbutton.msg.AlarmMessage;
@@ -13,6 +14,8 @@ import com.yurima.alarmbutton.sms.SmsSender;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static android.R.attr.id;
 
 /**
  * Created by Yury on 23.01.2019.
@@ -34,8 +37,8 @@ public class Manager {
         sms = new SmsManagerSender(context, phoneNo);
     }
 
-    public AlarmMessage createAlarmMessage(){
-        AlarmMessage msg = new AlarmMessageImpl();
+    public AlarmMessage createAlarmMessage(int key){
+        AlarmMessage msg = new AlarmMessageImpl(key);
         Location location = gps.getLocation();
         if (location != null)
             msg.setLocation(location);
@@ -43,8 +46,10 @@ public class Manager {
     }
 
     public void onClickAlarmButton() {
+        SettingsData data = new SettingsData(context);
         phoneNo = new SettingsData(context).getPhone();
-        AlarmMessage msg = createAlarmMessage();
+        int key = Integer.parseInt(data.getKey());
+        AlarmMessage msg = createAlarmMessage(key);
         String jString = msg.toJson().toString();
         sms.Send(msg);
 

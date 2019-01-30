@@ -48,6 +48,9 @@ public class SettingsDialogFragment extends DialogFragment {
     @BindView(R.id.dialog_menu_phone_no)
     EditText phoneText;
 
+    @BindView(R.id.dialog_menu_key)
+    EditText keyText;
+
 
     @NonNull
     @Override
@@ -64,11 +67,13 @@ public class SettingsDialogFragment extends DialogFragment {
     private void readSettings() {
         SettingsData data = new SettingsData(getActivity());
         phoneText.setText(data.getPhone());
+        keyText.setText(data.getKey());
     }
 
     private void saveSettings() {
         SettingsData data = new SettingsData(getActivity());
         data.savePhone(phoneText.getText().toString());
+        data.saveKey(keyText.getText().toString());
     }
 
     @Override

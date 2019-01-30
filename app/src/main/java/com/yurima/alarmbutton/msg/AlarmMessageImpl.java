@@ -3,12 +3,11 @@ package com.yurima.alarmbutton.msg;
 import android.location.Location;
 import android.location.LocationManager;
 
+import com.yurima.alarmbutton.settings.SettingsData;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.Provider;
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -22,16 +21,17 @@ import static java.lang.Long.getLong;
 
 public class AlarmMessageImpl implements AlarmMessage {
     //TODO
-    private int id;
+    private int key;
     private Date date;
     private Location location;
 
-    public AlarmMessageImpl() {
+    public AlarmMessageImpl(int key) {
         this.date = Calendar.getInstance().getTime();
+        this.key = key;
     }
 
     public AlarmMessageImpl(JSONObject json) throws JSONException{
-            this.id = json.getInt("id");
+            this.key = json.getInt("key");
             this.date = new Date(json.getLong("time"));
             if (json.has("long") && json.has("lat")){
                 double longitude = json.getDouble("long");
@@ -48,7 +48,8 @@ public class AlarmMessageImpl implements AlarmMessage {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder("test ");
+        StringBuilder builder = new StringBuilder("test \n");
+        builder.append("key: ").append(key);
         if (location != null){
             builder.append("\nLongitude: ").append(location.getLongitude())
                     .append("\nLatitude: ").append(location.getLatitude());
@@ -61,7 +62,7 @@ public class AlarmMessageImpl implements AlarmMessage {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         try {
-            json.put("id",id);
+            json.put("key", key);
             if (location != null) {
                 json.put("long",location.getLongitude());
                 json.put("lat",location.getLatitude());
