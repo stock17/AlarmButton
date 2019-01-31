@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Conductor</string>
+    <string name="start">Start</string>
 </resources>
