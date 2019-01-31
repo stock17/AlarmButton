@@ -18,7 +18,7 @@ public class SmsAppSender extends SmsSender {
 
     @Override
     public void Send(String phoneNo, AlarmMessage msg) {
-        Intent intent = new Intent( Intent.ACTION_VIEW, Uri.parse( "sms:" + phoneNo));
+        Intent intent = new Intent( Intent.ACTION_SENDTO, Uri.parse( "sms:" + phoneNo));
         intent.putExtra( "sms_body", msg.toJson().toString());
         context.startActivity(intent);
     }
