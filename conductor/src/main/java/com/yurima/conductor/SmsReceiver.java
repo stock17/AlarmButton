@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
+import android.util.Log;
 import android.widget.Toast;
 
 public class SmsReceiver extends BroadcastReceiver {
@@ -44,6 +45,7 @@ public class SmsReceiver extends BroadcastReceiver {
         String text = msg.getMessageBody();
         Toast.makeText(context, "from: " + address + "\n" +
                         "text: " + text, Toast.LENGTH_LONG ).show();
+        Log.i("Info", "Received!!!" );
     }
 
     private SmsMessage getIncomingMessage(Object aObject, Bundle bundle) {
