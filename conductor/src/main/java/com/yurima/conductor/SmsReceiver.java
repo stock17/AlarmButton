@@ -20,6 +20,7 @@ public class SmsReceiver extends BroadcastReceiver {
         if (smsMessages != null){
             for (SmsMessage msg : smsMessages){
                 showMessage(context, msg);
+
             }
         }
     }
