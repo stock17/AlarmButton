@@ -28,6 +28,8 @@ public class SmsReceiver extends BroadcastReceiver {
                 showMessage(context, msg);
                 try {
                     AlarmMessage alarmMessage = new AlarmMessageImpl(new JSONObject(msg.getMessageBody()));
+                    alarmMessage.setSender(msg.getOriginatingAddress());
+                    //TODO send to PC
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

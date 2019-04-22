@@ -11,4 +11,5 @@ public interface AlarmMessage {
 
     JSONObject toJson();
     void setLocation(Location location);
+    void setSender(String sender);
 }
