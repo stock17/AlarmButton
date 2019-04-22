@@ -5,8 +5,8 @@ import android.location.Location;
 import android.media.audiofx.BassBoost;
 import android.widget.Toast;
 
-import com.yurima.alarmbutton.msg.AlarmMessage;
-import com.yurima.alarmbutton.msg.AlarmMessageImpl;
+import com.yurima.alarmbuttonlib.msg.AlarmMessage;
+import com.yurima.alarmbuttonlib.msg.AlarmMessageImpl;
 import com.yurima.alarmbutton.settings.SettingsData;
 import com.yurima.alarmbutton.sms.SmsAppSender;
 import com.yurima.alarmbutton.sms.SmsManagerSender;

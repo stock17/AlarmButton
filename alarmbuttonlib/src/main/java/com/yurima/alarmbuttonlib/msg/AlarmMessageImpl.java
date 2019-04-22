@@ -1,4 +1,4 @@
-package com.yurima.alarmbutton.msg;
+package com.yurima.alarmbuttonlib.msg;
 
 import android.location.Location;
 import android.location.LocationManager;
@@ -10,8 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import static java.lang.Long.getLong;
 
 /**
  * Created by Yury on 24.01.2019.

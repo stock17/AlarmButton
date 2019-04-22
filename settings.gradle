@@ -1,1 +1,1 @@
-include ':client', ':conductor'
+include ':client', ':conductor', ':alarmbuttonlib'

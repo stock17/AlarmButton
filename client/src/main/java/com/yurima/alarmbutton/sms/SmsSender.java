@@ -2,12 +2,7 @@ package com.yurima.alarmbutton.sms;
 
 import android.content.Context;
 
-import com.yurima.alarmbutton.msg.AlarmMessage;
-import com.yurima.alarmbutton.msg.AlarmMessageImpl;
-
-/**
- * Created by Yury on 24.01.2019.
- */
+import com.yurima.alarmbuttonlib.msg.AlarmMessage;
 
 public abstract class SmsSender {
 

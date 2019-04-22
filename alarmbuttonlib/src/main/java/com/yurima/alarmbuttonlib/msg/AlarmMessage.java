@@ -1,4 +1,4 @@
-package com.yurima.alarmbutton.msg;
+package com.yurima.alarmbuttonlib.msg;
 import android.location.Location;
 
 import org.json.JSONObject;

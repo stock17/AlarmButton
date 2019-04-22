@@ -9,6 +9,12 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.yurima.alarmbuttonlib.msg.AlarmMessage;
+import com.yurima.alarmbuttonlib.msg.AlarmMessageImpl;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class SmsReceiver extends BroadcastReceiver {
 
     SmsMessage[] smsMessages;
@@ -20,7 +26,11 @@ public class SmsReceiver extends BroadcastReceiver {
         if (smsMessages != null){
             for (SmsMessage msg : smsMessages){
                 showMessage(context, msg);
-
+                try {
+                    AlarmMessage alarmMessage = new AlarmMessageImpl(new JSONObject(msg.getMessageBody()));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
