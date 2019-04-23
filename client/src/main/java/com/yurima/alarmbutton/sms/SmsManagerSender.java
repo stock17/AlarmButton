@@ -4,8 +4,8 @@ import android.content.Context;
 import android.telephony.SmsManager;
 import android.widget.Toast;
 
-import com.yurima.alarmbutton.msg.AlarmMessage;
-import com.yurima.alarmbutton.msg.AlarmMessageImpl;
+import com.yurima.alarmbuttonlib.msg.AlarmMessage;
+import com.yurima.alarmbuttonlib.msg.AlarmMessageImpl;
 
 /**
  * Created by Yury on 24.01.2019.

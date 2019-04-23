@@ -3,8 +3,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.yurima.alarmbutton.msg.AlarmMessage;
-import com.yurima.alarmbutton.msg.AlarmMessageImpl;
+import com.yurima.alarmbuttonlib.msg.AlarmMessage;
+import com.yurima.alarmbuttonlib.msg.AlarmMessageImpl;
 
 
 /**

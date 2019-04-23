@@ -1,7 +1,7 @@
 package com.yurima.alarmbutton;
 
-import com.yurima.alarmbutton.msg.AlarmMessage;
-import com.yurima.alarmbutton.msg.AlarmMessageImpl;
+import com.yurima.alarmbuttonlib.msg.AlarmMessage;
+import com.yurima.alarmbuttonlib.msg.AlarmMessageImpl;
 
 import org.json.JSONException;
 import org.json.JSONObject;
