@@ -7,28 +7,35 @@ import android.os.Message;
 import android.util.Log;
 
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 
 public class PcSender implements Runnable {
 
-    Socket out;
+    ServerSocket serverSocket;
+    Socket socket;
+    PrintWriter writer;
 
     @Override
     public void run() {
         try {
-            out = new Socket ("127.0.0.1", 9000);
+            serverSocket = new ServerSocket (9000);
+            socket = serverSocket.accept();
+            Log.i("PcSender", "Socket is connected!!!");
+            writer = new PrintWriter(socket.getOutputStream());
+
         } catch (Exception e){}
     }
 
     public void sendMessage(String msg) {
         try {
+
             Log.i("AAA", "Into the SEND method!!!");
-            if (out == null)
-                out = new Socket("127.0.0.1", 9000);
-            PrintWriter writer = new PrintWriter(out.getOutputStream());
-            writer.write(msg);
-            writer.flush();
+            if (socket != null && socket.isConnected()) {
+                writer.write(msg);
+                writer.flush();
+            }
 
         } catch (Exception ex) { }
     }
