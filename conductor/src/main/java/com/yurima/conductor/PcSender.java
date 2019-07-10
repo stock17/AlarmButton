@@ -24,8 +24,12 @@ public class PcSender implements Runnable {
             socket = serverSocket.accept();
             Log.i("PcSender", "Socket is connected!!!");
             writer = new PrintWriter(socket.getOutputStream());
+            writer.write("TEST\n");
+            writer.flush();
 
-        } catch (Exception e){}
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void sendMessage(String msg) {
