@@ -2,6 +2,7 @@ package com.yurima.conductor;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -16,20 +17,34 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ConductorService mConductorService;
     private final int REQUEST_CODE_RECEIVE_SMS = 1;
+
+    private SmsReceiver mSmsReceiver;
+    private IntentFilter mIntentFilter;
 
     @BindView(R.id.button_start)
     Button startButton;
-    @OnClick(R.id.button_start)
-    void onClickStartButton(){
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         checkSmsPermission();
 
-        mConductorService = new ConductorService();
-        Intent serviceIntent = new Intent(getApplicationContext(), ConductorService.class);
-        startService(serviceIntent);
+        mSmsReceiver = new SmsReceiver();
+        mIntentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        mIntentFilter.setPriority(999);
+        registerReceiver(mSmsReceiver, mIntentFilter);
     }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(mSmsReceiver);
+        super.onDestroy();
+    }
+
 
     private void checkSmsPermission(){
         if (Build.VERSION.SDK_INT >= 23) {
@@ -41,10 +56,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    @OnClick(R.id.button_start)
+    void onClickStartButton(){
+
     }
 }
