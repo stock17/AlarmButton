@@ -6,28 +6,20 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.yurima.alarmbuttonlib.msg.AlarmMessage;
-import com.yurima.alarmbuttonlib.msg.AlarmMessageImpl;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class SmsReceiver extends BroadcastReceiver {
 
     SmsMessage[] smsMessages;
-    private PcSender pcSender;
-    private Handler handler;
+    private SenderThread mSenderThread;
+    private String SENDER_THREAD_NAME = "SenderThread";
 
     public SmsReceiver(){
-        pcSender = new PcSender();
-        Thread dataThread = new Thread(pcSender);
-        dataThread.start();
+        mSenderThread = new SenderThread(SENDER_THREAD_NAME);
+        mSenderThread.start();
+        mSenderThread.prepareHandler();
     }
 
     @Override
@@ -36,19 +28,8 @@ public class SmsReceiver extends BroadcastReceiver {
         if (smsMessages != null){
             for (SmsMessage msg : smsMessages){
                 showMessage(context, msg);
-                try {
-
-                    pcSender.sendMessage("TEST");
-
-                    AlarmMessage alarmMessage = new AlarmMessageImpl(new JSONObject(msg.getMessageBody()));
-                    alarmMessage.setSender(msg.getOriginatingAddress());
-                    //TODO send to PC
-
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                String str = msg.getMessageBody();
+                mSenderThread.sendMessage(str);
             }
         }
     }
