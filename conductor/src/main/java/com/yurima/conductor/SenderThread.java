@@ -28,10 +28,8 @@ public class SenderThread extends HandlerThread {
             serverSocket = new ServerSocket (9000);
             socket = serverSocket.accept();
             Log.i("SenderThread", "Socket is connected!!!");
-            writer = new PrintWriter(socket.getOutputStream());
-            writer.write("TEST\n");
-            writer.flush();
-
+            writer = new PrintWriter(socket.getOutputStream(), true);
+            writer.println("TEST");
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -46,8 +44,7 @@ public class SenderThread extends HandlerThread {
                     if (socket != null && socket.isConnected()) {
                         if (msg.what == STRING_MESSAGE){
                             String str = (String) msg.obj;
-                            writer.write(str);
-                            writer.flush();
+                            writer.println(str);
                         }
                     }
 
