@@ -39,8 +39,8 @@ public class SenderThread extends HandlerThread {
         mSenderHandler = new Handler(this.getLooper()) {
             @Override
             public void handleMessage(Message msg) {
+                Log.i("AAA", "Into the SEND method!!!");
                 try {
-                    Log.i("AAA", "Into the SEND method!!!");
                     if (socket != null && socket.isConnected()) {
                         if (msg.what == STRING_MESSAGE){
                             String str = (String) msg.obj;
@@ -54,7 +54,10 @@ public class SenderThread extends HandlerThread {
     }
 
     public void sendMessage(String text) {
-        Message message = mSenderHandler.obtainMessage(STRING_MESSAGE, text);
+//        Message message = mSenderHandler.obtainMessage(STRING_MESSAGE, text);
+        Message message = new Message();
+        message.what = STRING_MESSAGE;
+        message.obj = text;
         mSenderHandler.sendMessage(message);
     }
 }
