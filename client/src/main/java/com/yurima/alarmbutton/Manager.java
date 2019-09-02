@@ -54,6 +54,7 @@ public class Manager {
         String jString = msg.toJson().toString();
         sms.Send(data.getPhone(), msg);
 
+
         //Simulate sending message
         try {
             JSONObject json = new JSONObject(jString);
