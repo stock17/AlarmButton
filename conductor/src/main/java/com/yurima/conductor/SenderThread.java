@@ -36,9 +36,9 @@ public class SenderThread extends HandlerThread {
     }
 
     public void prepareHandler(){
-        mSenderHandler = new Handler(getLooper(), new Handler.Callback() {
+        mSenderHandler = new Handler(this.getLooper()) {
             @Override
-            public boolean handleMessage(Message msg) {
+            public void handleMessage(Message msg) {
                 try {
                     Log.i("AAA", "Into the SEND method!!!");
                     if (socket != null && socket.isConnected()) {
@@ -49,10 +49,8 @@ public class SenderThread extends HandlerThread {
                     }
 
                 } catch (Exception ex) { }
-
-                return true;
             }
-        });
+        };
     }
 
     public void sendMessage(String text) {
