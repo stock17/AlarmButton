@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private SmsReceiver mSmsReceiver;
     private IntentFilter mIntentFilter;
 
+    private SenderThread mSenderThread;
+    private String SENDER_THREAD_NAME = "SenderThread";
+
     @BindView(R.id.button_start)
     Button startButton;
 
@@ -33,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
         checkSmsPermission();
 
-        mSmsReceiver = new SmsReceiver();
+        mSenderThread = new SenderThread(SENDER_THREAD_NAME);
+        mSenderThread.start();
+        mSenderThread.prepareHandler();
+
+        mSmsReceiver = new SmsReceiver(mSenderThread);
         mIntentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
         mIntentFilter.setPriority(999);
         registerReceiver(mSmsReceiver, mIntentFilter);

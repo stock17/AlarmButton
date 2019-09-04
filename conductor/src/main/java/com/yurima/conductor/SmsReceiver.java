@@ -15,13 +15,10 @@ public class SmsReceiver extends BroadcastReceiver {
 
     SmsMessage[] smsMessages;
     private SenderThread mSenderThread;
-    private String SENDER_THREAD_NAME = "SenderThread";
 
-    public SmsReceiver(){
+    public SmsReceiver(SenderThread senderThread){
         super();
-        mSenderThread = new SenderThread(SENDER_THREAD_NAME);
-        mSenderThread.start();
-        mSenderThread.prepareHandler();
+        mSenderThread = senderThread;
     }
 
     @Override
