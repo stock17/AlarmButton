@@ -18,6 +18,7 @@ public class SmsReceiver extends BroadcastReceiver {
     private String SENDER_THREAD_NAME = "SenderThread";
 
     public SmsReceiver(){
+        super();
         mSenderThread = new SenderThread(SENDER_THREAD_NAME);
         mSenderThread.start();
         mSenderThread.prepareHandler();
