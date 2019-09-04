@@ -95,7 +95,7 @@ public class AlarmMessageImpl implements AlarmMessage {
         return json;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

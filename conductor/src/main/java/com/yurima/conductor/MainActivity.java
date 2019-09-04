@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_CODE_RECEIVE_SMS = 1;
     private final int REQUEST_CODE_READ_PHONE = 2;
+    private final int REQUEST_CODE_CALL_PHONE = 3;
 
     private SmsReceiver mSmsReceiver;
     private IntentFilter mSmsmIntentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
@@ -75,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_PHONE_STATE},
                         REQUEST_CODE_READ_PHONE);
+            }
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE},
+                        REQUEST_CODE_CALL_PHONE);
             }
         }
     }
