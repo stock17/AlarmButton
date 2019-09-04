@@ -1,7 +1,6 @@
 package com.yurima.conductor;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -18,9 +17,13 @@ import butterknife.OnClick;
 public class MainActivity extends AppCompatActivity {
 
     private final int REQUEST_CODE_RECEIVE_SMS = 1;
+    private final int REQUEST_CODE_READ_PHONE = 2;
 
     private SmsReceiver mSmsReceiver;
-    private IntentFilter mIntentFilter;
+    private IntentFilter mSmsmIntentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+
+    private CallReceiver mCallReceiver;
+    private IntentFilter mCallIntentFilter = new IntentFilter("android.intent.action.PHONE_STATE");
 
     private SenderThread mSenderThread;
     private String SENDER_THREAD_NAME = "SenderThread";
@@ -41,14 +44,21 @@ public class MainActivity extends AppCompatActivity {
         mSenderThread.prepareHandler();
 
         mSmsReceiver = new SmsReceiver(mSenderThread);
-        mIntentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
-        mIntentFilter.setPriority(999);
-        registerReceiver(mSmsReceiver, mIntentFilter);
+        mSmsmIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        registerReceiver(mSmsReceiver, mSmsmIntentFilter);
+
+        mCallReceiver= new CallReceiver(mSenderThread);
+        mCallIntentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        registerReceiver(mCallReceiver, mCallIntentFilter);
+
+
     }
 
     @Override
     protected void onDestroy() {
         unregisterReceiver(mSmsReceiver);
+        unregisterReceiver(mCallReceiver);
+        mSenderThread.quit();
         super.onDestroy();
     }
 
@@ -59,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
                     PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECEIVE_SMS},
                         REQUEST_CODE_RECEIVE_SMS);
+            }
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.READ_PHONE_STATE},
+                        REQUEST_CODE_READ_PHONE);
             }
         }
     }
