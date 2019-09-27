@@ -42,8 +42,10 @@ public class Manager {
     public AlarmMessage createAlarmMessage(int key){
         AlarmMessage msg = new AlarmMessageImpl(key);
         Location location = gps.getLocation();
-        if (location != null)
-            msg.setLocation(location);
+        if (location != null) {
+            AlarmMessage.Location loc = new AlarmMessage.Location(location.getLatitude(), location.getLongitude());
+            msg.setLocation(loc);
+        }
         return msg;
     }
 
