@@ -36,14 +36,16 @@ public class Manager {
         this.context = context;
         caller = new Caller(context);
         gps = new GPSHandler(context);
-        sms = new SmsManagerSender(context);
+        sms = new SmsAppSender(context);
     }
 
     public AlarmMessage createAlarmMessage(int key){
         AlarmMessage msg = new AlarmMessageImpl(key);
         Location location = gps.getLocation();
-        if (location != null)
-            msg.setLocation(new AlarmMessage.Location(location.getLatitude(), location.getLongitude()));
+        if (location != null) {
+            AlarmMessage.Location loc = new AlarmMessage.Location(location.getLatitude(), location.getLongitude());
+            msg.setLocation(loc);
+        }
         return msg;
     }
 
