@@ -1,5 +1,10 @@
 package com.yurima.alarmbutton;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Manager manager;
     SettingsManager settingsManager;
 
+    public static final int REQUEST_CODE_SEND_SMS_ = 1;
+
     @BindView(R.id.alarm_button) ImageButton alarmButton;
     @OnClick (R.id.alarm_button)
     public void onClickAlarmButton (ImageButton ib) {
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         manager = new Manager(this);
         settingsManager = new SettingsManager(this);
+        checkSmsPermission();
     }
 
     @Override
@@ -56,5 +64,15 @@ public class MainActivity extends AppCompatActivity {
         SettingsDialogFragment dialogFragment = new SettingsDialogFragment();
         dialogFragment.show(getSupportFragmentManager(), "tag1");
 
+    }
+
+    private void checkSmsPermission(){
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECEIVE_SMS) !=
+                    PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.RECEIVE_SMS},
+                        REQUEST_CODE_SEND_SMS_);
+            }
+        }
     }
 }
