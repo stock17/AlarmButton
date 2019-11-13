@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AlarmButton.iml" filepath="$PROJECT_DIR$/AlarmButton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/alarmbuttonlib/AlarmButton-alarmbuttonlib.iml" filepath="$PROJECT_DIR$/alarmbuttonlib/AlarmButton-alarmbuttonlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client/AlarmButton-client.iml" filepath="$PROJECT_DIR$/client/AlarmButton-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/conductor/AlarmButton-conductor.iml" filepath="$PROJECT_DIR$/conductor/AlarmButton-conductor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StudioProjects-AlarmButton.iml" filepath="$PROJECT_DIR$/StudioProjects-AlarmButton.iml" />
       <module fileurl="file://$PROJECT_DIR$/alarmbuttonlib/alarmbuttonlib.iml" filepath="$PROJECT_DIR$/alarmbuttonlib/alarmbuttonlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/client/client.iml" filepath="$PROJECT_DIR$/client/client.iml" />
       <module fileurl="file://$PROJECT_DIR$/conductor/conductor.iml" filepath="$PROJECT_DIR$/conductor/conductor.iml" />

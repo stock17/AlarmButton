@@ -36,7 +36,7 @@ public class Manager {
         this.context = context;
         caller = new Caller(context);
         gps = new GPSHandler(context);
-        sms = new SmsAppSender(context);
+        sms = new SmsManagerSender(context);
     }
 
     public AlarmMessage createAlarmMessage(int key){
